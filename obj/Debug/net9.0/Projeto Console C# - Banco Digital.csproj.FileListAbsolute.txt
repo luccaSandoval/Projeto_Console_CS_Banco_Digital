@@ -12,3 +12,4 @@ D:\PORO\Estudos\Projeto Console C# - Banco Digital\obj\Debug\net9.0\refint\Proje
 D:\PORO\Estudos\Projeto Console C# - Banco Digital\obj\Debug\net9.0\Projeto Console C# - Banco Digital.pdb
 D:\PORO\Estudos\Projeto Console C# - Banco Digital\obj\Debug\net9.0\Projeto Console C# - Banco Digital.genruntimeconfig.cache
 D:\PORO\Estudos\Projeto Console C# - Banco Digital\obj\Debug\net9.0\ref\Projeto Console C# - Banco Digital.dll
+D:\PORO\Estudos\Projeto Console C# - Banco Digital\obj\Debug\net9.0\Projeto Console C# - Banco Digital.sourcelink.json
