@@ -9,7 +9,8 @@ namespace BancoDigital.Classes
     public class Layout
     {
 
-        
+        static List<Conta>  contas = new List<Conta>();
+
 
         public static void TelaPrincipal()
         {
@@ -108,18 +109,55 @@ namespace BancoDigital.Classes
             Console.Clear();
 
 
+
+            do
+            {
+                Utilidades.EscreverCentralizado("Digite sua Senha:");
+                senha = Console.ReadLine();
+
+                if (!Utilidades.ValidarNome(senha))
+                {
+                    Console.Clear();         
+                    Utilidades.EscreverCentralizadoEmVermelho("Senha Inválida, Tente Novamente...");
+
+                }
+                
+                
+            }while(!Utilidades.ValidarNome(senha));
+
+
+            Utilidades.EscreverCentralizadoEmVerde("Senha Válida");
+            Thread.Sleep(1000);
+            Console.Clear();
+
+
+            Utilidades.EscreverCentralizadoEmVerde("Conta Criada com Sucesso!");
+
+            Conta novaConta = new Conta(nome, cpf, senha);
+            contas.Add(novaConta);
+    
+            Console.WriteLine();
+            novaConta.MostrarResumo();
+
+            Thread.Sleep(1000);
+            Console.Clear();
+
             TelaConta();
 
         }
-
+ 
         public static void TelaConta()
         {
+
+            Conta primeiraConta = contas[0];
+
+
             Console.Clear();
 
             Utilidades.SettaCores();
             Console.Clear();
 
-            Utilidades.EscreverCentralizado("Bem Vindo, Nome | Banco: 000 | Agencia: 00000 | Conta: 000 ");
+            Utilidades.EscreverCentralizado($"Bem Vindo, {primeiraConta.Nome} | Banco: 000 | Agencia: 00000 | Conta: {Conta.QtdConta} ");
             Console.WriteLine();
             Utilidades.EscreverCentralizado("Escolha uma das opções abaixo:");
             Utilidades.EscreverCentralizado("<><><><><><><><><><><><><><><><><><><><><><><><><>");
