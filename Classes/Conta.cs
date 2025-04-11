@@ -5,7 +5,7 @@ namespace BancoDigital.Classes
 
     class Conta
     {
-        public double saldo{get; private set;}
+        public double Saldo{get; private set;}
         protected string NumeroDoBanco{get; set;}
         protected string NumeroDaAgencia{get; set;}
         protected string NumeroDaConta{get; set;}
@@ -15,8 +15,9 @@ namespace BancoDigital.Classes
         public static int  QtdConta = 0;
 
 
-        public Conta(string nome, string cpf, string senha)
+        public Conta(string nome, string cpf, string senha, double saldo)
         {
+            Saldo = saldo;
             Nome = nome;
             Cpf = cpf;
             Senha = senha;
@@ -31,21 +32,21 @@ namespace BancoDigital.Classes
 
         public void RealizaDeposito(double QtdDeposito)
         {
-            saldo += QtdDeposito;
+            Saldo += QtdDeposito;
         
         }
 
         public void RealizaSaque(double QtdSaque)
         {
             
-            saldo -= QtdSaque;
+            Saldo -= QtdSaque;
         
         }
 
         public void ConsultaSaldo()
         {
 
-            Console.WriteLine("Saldo da conta: " + saldo);
+            Utilidades.EscreverCentralizado("Saldo da conta: " + Saldo);
         
         }
 

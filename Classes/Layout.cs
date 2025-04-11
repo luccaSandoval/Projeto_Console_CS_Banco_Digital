@@ -10,8 +10,8 @@ namespace BancoDigital.Classes
     {
 
         static List<Conta>  contas = new List<Conta>();
-
-
+        static double saldo = 0;
+        static int opcao;
         public static void TelaPrincipal()
         {
             Console.Clear();
@@ -28,7 +28,7 @@ namespace BancoDigital.Classes
 
             
 
-            int opcao = 0;
+            opcao = 0;
 
 
                 
@@ -133,7 +133,7 @@ namespace BancoDigital.Classes
 
             Utilidades.EscreverCentralizadoEmVerde("Conta Criada com Sucesso!");
 
-            Conta novaConta = new Conta(nome, cpf, senha);
+            Conta novaConta = new Conta(nome, cpf, senha, saldo);
             contas.Add(novaConta);
     
             Console.WriteLine();
@@ -171,10 +171,26 @@ namespace BancoDigital.Classes
             Utilidades.EscreverCentralizado("<><><><><><><><><><><><><><><><><><><><><><><><><>");
             Utilidades.EscreverCentralizado("5 - Sair");
             Utilidades.EscreverCentralizado("<><><><><><><><><><><><><><><><><><><><><><><><><>");
-
+       
             Utilidades.SettaCores();
 
-            Console.ReadKey();
+            
+
+            opcao= int.Parse(Console.ReadLine());
+
+            switch(opcao)
+            {
+                case 1:
+                    TelaContaDeposito();
+                    break;
+                case 2:
+                    Console.WriteLine("op 2");
+                    break;
+                default:
+                    Utilidades.EscreverCentralizadoEmVermelho("Opção Inválida!");
+                    break;
+
+            }
 
 
 
@@ -183,6 +199,22 @@ namespace BancoDigital.Classes
 
         }
 
+
+        public static void TelaContaDeposito()
+        {
+            Console.Clear();
+
+            Conta primeiraConta = contas[0];
+            Utilidades.EscreverCentralizado($"Bem Vindo, {primeiraConta.Nome} | Banco: 000 | Agencia: 00000 | Conta: {Conta.QtdConta} ");
+            Console.WriteLine();
+            Utilidades.EscreverCentralizado("Digite o valor do deposito: ");
+            double qtddeposito = double.Parse(Console.ReadLine());
+            primeiraConta.RealizaDeposito(qtddeposito);
+
+            primeiraConta.ConsultaSaldo();
+            Console.ReadKey();
+
+        }
 
 
 
