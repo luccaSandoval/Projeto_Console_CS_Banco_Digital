@@ -3,7 +3,7 @@ namespace BancoDigital.Classes
 
     
 
-    class Conta
+    public class Conta
     {
         public double Saldo{get; private set;}
         protected string NumeroDoBanco{get; set;}
@@ -55,6 +55,8 @@ namespace BancoDigital.Classes
             
         
         }
+
+        
 
 
 

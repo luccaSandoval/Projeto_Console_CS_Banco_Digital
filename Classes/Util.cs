@@ -2,7 +2,7 @@ using System.Text.RegularExpressions;
 
 namespace BancoDigital.Classes
 {
-    public class Utilidades
+    public class Utilidades 
     {
         
 
@@ -88,6 +88,49 @@ namespace BancoDigital.Classes
             
             return Regex.IsMatch(cpf, @"^\d{11}$"); // Regex: permite apenas letras (acentuadas ou não) e espaços
         }
+
+        public static bool ValidarSenha(string senha)
+        {
+            if (string.IsNullOrWhiteSpace(senha))
+                return false;
+
+            if (senha.Length < 6)
+                return false;
+
+            return Regex.IsMatch(senha, @"^(?=.*[A-Za-z])(?=.*\d).+$");
+        }
+
+
+        public static bool ValidarCpfLogin(string cpf, List<Conta> contas)
+        {
+            Conta primeiraConta = contas[0];
+
+            if (cpf == primeiraConta.Cpf)
+            {
+                return true;
+            } 
+            else
+            {
+                return false;
+            }
+
+        }
+
+        public static bool ValidarSenhaLogin(string senha, List<Conta> contas)
+        {
+            Conta primeiraConta = contas[0];
+
+            if (senha == primeiraConta.Senha)
+            {
+                return true;
+            } 
+            else
+            {
+                return false;
+            }
+        }
+
+                
 
 
 
