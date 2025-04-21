@@ -59,13 +59,11 @@ namespace BancoDigital.Classes
         {
            if(tipoDeTransacao == "Deposito")
            {
-                Extrato.Add(@"Tipo de movimentação: Depósito
-                Valor: " + valorTransacao);
+                Extrato.Add("Depósito ---> Valor: " + valorTransacao);
            }
            else
            {
-                Extrato.Add(@"Tipo de movimentação: Saque
-                Valor: -" + valorTransacao);
+                Extrato.Add(@"Saque ---> Valor: -" + valorTransacao);
            } 
         
         }

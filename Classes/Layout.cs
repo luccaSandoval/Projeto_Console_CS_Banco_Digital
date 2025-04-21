@@ -19,6 +19,8 @@ namespace BancoDigital.Classes
             Console.Clear();
             opcao = 0;
 
+            
+
 
 
             Utilidades.EscreverCentralizado("Escolha uma das opções abaixo:");
@@ -331,6 +333,10 @@ namespace BancoDigital.Classes
             Conta primeiraConta = contas[0];
             Utilidades.EscreverCentralizado($"Bem Vindo, {primeiraConta.Nome} | Banco: 000 | Agencia: 00000 | Conta: {Conta.QtdConta} ");
             Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
             primeiraConta.ConsultaSaldo();
             Console.ReadKey();
 
@@ -348,6 +354,8 @@ namespace BancoDigital.Classes
             Console.WriteLine();
             Console.WriteLine();
             primeiraConta.ConsultaExtrato();
+            Console.WriteLine();
+            Console.WriteLine();
 
             Utilidades.EscreverCentralizado("<><><><><><><><><><><><><><><><><><><><><><><><><>");
             Utilidades.EscreverCentralizado("Saldo atual: " + primeiraConta.Saldo);
