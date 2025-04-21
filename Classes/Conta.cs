@@ -14,6 +14,8 @@ namespace BancoDigital.Classes
         public string Senha { get; set; }
         public static int  QtdConta = 0;
 
+        List <string> Extrato = new List<string>();
+
 
         public Conta(string nome, string cpf, string senha, double saldo)
         {
@@ -33,6 +35,8 @@ namespace BancoDigital.Classes
         public void RealizaDeposito(double QtdDeposito)
         {
             Saldo += QtdDeposito;
+
+            PopulaExtrato("Deposito", QtdDeposito);
         
         }
 
@@ -40,18 +44,38 @@ namespace BancoDigital.Classes
         {
             
             Saldo -= QtdSaque;
-        
+
+            PopulaExtrato("Saque", QtdSaque);
         }
 
         public void ConsultaSaldo()
         {
 
             Utilidades.EscreverCentralizado("Saldo da conta: " + Saldo);
+
+        }
+
+        public void PopulaExtrato(string tipoDeTransacao, double valorTransacao)
+        {
+           if(tipoDeTransacao == "Deposito")
+           {
+                Extrato.Add(@"Tipo de movimentação: Depósito
+                Valor: " + valorTransacao);
+           }
+           else
+           {
+                Extrato.Add(@"Tipo de movimentação: Saque
+                Valor: -" + valorTransacao);
+           } 
         
         }
 
-        public void Extrato()
+        public void ConsultaExtrato()
         {
+            foreach (String ex in Extrato )
+            {
+                Utilidades.EscreverCentralizado(ex);
+            }
             
         
         }

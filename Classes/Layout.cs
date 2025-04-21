@@ -344,12 +344,18 @@ namespace BancoDigital.Classes
 
             Conta primeiraConta = contas[0];
             Utilidades.EscreverCentralizado($"Bem Vindo, {primeiraConta.Nome} | Banco: 000 | Agencia: 00000 | Conta: {Conta.QtdConta} ");
+            
             Console.WriteLine();
-            Utilidades.EscreverCentralizado("Digite o valor do deposito: ");
-            double qtddeposito = double.Parse(Console.ReadLine());
-            primeiraConta.RealizaDeposito(qtddeposito);
+            Console.WriteLine();
+            primeiraConta.ConsultaExtrato();
 
-            primeiraConta.ConsultaSaldo();
+            Utilidades.EscreverCentralizado("<><><><><><><><><><><><><><><><><><><><><><><><><>");
+            Utilidades.EscreverCentralizado("Saldo atual: " + primeiraConta.Saldo);
+            Utilidades.EscreverCentralizado("<><><><><><><><><><><><><><><><><><><><><><><><><>");
+            
+            Console.WriteLine();
+            Console.WriteLine();
+            Utilidades.EscreverCentralizado("Pressione qualquer botão para voltar!");
             Console.ReadKey();
 
             TelaConta();
