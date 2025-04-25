@@ -34,6 +34,8 @@ namespace BancoDigital.Classes
 
         public void RealizaDeposito(double QtdDeposito)
         {
+
+            
             Saldo += QtdDeposito;
 
             PopulaExtrato("Deposito", QtdDeposito);

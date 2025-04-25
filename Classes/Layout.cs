@@ -3,6 +3,7 @@ using BancoDigital.Classes;
 using System;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading;
+using System.Text.RegularExpressions;
 
 namespace BancoDigital.Classes
 {
@@ -11,13 +12,13 @@ namespace BancoDigital.Classes
 
         static List<Conta>  contas = new List<Conta>();
         static double saldo = 0;
-        static int opcao;
+        static string opcao;
         public static void TelaPrincipal()
         {
             Console.Clear();
             Utilidades.SettaCores();
             Console.Clear();
-            opcao = 0;
+            opcao = "";
 
             
 
@@ -35,23 +36,23 @@ namespace BancoDigital.Classes
             do
             {
 
-                opcao = int.Parse(Console.ReadLine());
+                opcao = (Console.ReadLine());
 
             switch(opcao)
             {
-                case 1:
+                case "1":
                     TelaCriaConta();
                     break;
-                case 2:
+                case "2":
                     TelaLoginConta();
                     break;
                 default:
-                    Utilidades.EscreverCentralizadoEmVermelho("Opção Inválida!");
+                    Utilidades.EscreverCentralizadoEmVermelho("Opção Inválida! Tente Novamente!");
                     break;
 
             }
             
-            }while(opcao != 1||opcao != 2);
+            }while(opcao != "1"||opcao != "2");
 
 
                 
@@ -252,33 +253,44 @@ namespace BancoDigital.Classes
        
             Utilidades.SettaCores();
 
+
             
+            //opcao= int.Parse(Console.ReadLine());
 
-            opcao= int.Parse(Console.ReadLine());
 
-            switch(opcao)
+            do
             {
-                case 1:
+                opcao= (Console.ReadLine());
+
+                switch(opcao)
+                {
+                case "1":
                     TelaContaDeposito();
                     break;
-                case 2:
+                case "2":
                     TelaContaSaque();
                     break;
-                case 3:
+                case "3":
                     TelaContaSaldo();
                     break;
-                case 4:
+                case "4":
                     TelaContaExtrato();
                     break;
-                case 5:
+                case "5":
                     TelaContaSaindo();
-                    break;
+                    break;                  
                 default:
                     Utilidades.EscreverCentralizadoEmVermelho("Opção Inválida! Tente Novamente:");
                     break;
 
-            }
+                }
+            }while((opcao != "1" || opcao != "2" || opcao != "3" || opcao != "4" || opcao != "5"));
 
+             
+
+             
+
+                
 
 
 
@@ -295,7 +307,28 @@ namespace BancoDigital.Classes
             Utilidades.EscreverCentralizado($"Bem Vindo, {primeiraConta.Nome} | Banco: 000 | Agencia: 00000 | Conta: {Conta.QtdConta} ");
             Console.WriteLine();
             Utilidades.EscreverCentralizado("Digite o valor do deposito: ");
-            double qtddeposito = double.Parse(Console.ReadLine());
+
+            string entrada = Console.ReadLine();
+            
+
+            if (!Regex.IsMatch(entrada, @"^\d+([.,]?\d+)?$")) //verifica se a entra é um número 
+            {
+                Utilidades.EscreverCentralizadoEmVermelho("Valor inválido! Digite apenas números.");
+                Console.ReadKey();
+                TelaContaDeposito(); 
+                return;
+            }
+
+            double qtddeposito = double.Parse(entrada.Replace(',', '.')); // troca vírgula por ponto, se houver
+            
+            if (qtddeposito <= 0)
+            {
+                Utilidades.EscreverCentralizadoEmVermelho("O valor do depósito deve ser maior que zero.");
+                Console.ReadKey();
+                TelaContaDeposito();
+                return;
+            }
+            
             primeiraConta.RealizaDeposito(qtddeposito);
 
             primeiraConta.ConsultaSaldo();
@@ -317,6 +350,14 @@ namespace BancoDigital.Classes
             Console.WriteLine();
             Utilidades.EscreverCentralizado("Digite o valor do saque: ");
             double QtdSaque = double.Parse(Console.ReadLine());
+
+            if(primeiraConta.Saldo < QtdSaque)
+            {
+                Utilidades.EscreverCentralizadoEmVermelho("Saldo Insuficiente!!!");
+                Console.ReadKey();
+                TelaContaSaque();
+            }
+
             primeiraConta.RealizaSaque(QtdSaque);
 
             primeiraConta.ConsultaSaldo();
@@ -337,7 +378,11 @@ namespace BancoDigital.Classes
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine();
+            Utilidades.EscreverCentralizado("<><><><><><><><><><><><><><><><><><><><><><><><><>");
+            Utilidades.EscreverCentralizado("<><><><><><><><><><><><><><><><><><><><><><><><><>");
             primeiraConta.ConsultaSaldo();
+            Utilidades.EscreverCentralizado("<><><><><><><><><><><><><><><><><><><><><><><><><>");
+            Utilidades.EscreverCentralizado("<><><><><><><><><><><><><><><><><><><><><><><><><>");
             Console.ReadKey();
 
             TelaConta();
