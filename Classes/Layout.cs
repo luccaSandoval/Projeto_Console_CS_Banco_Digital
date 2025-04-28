@@ -4,15 +4,23 @@ using System;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using System.Text.RegularExpressions;
+using System.Linq;
 
 namespace BancoDigital.Classes
 {
-    public class Layout
+    public  class Layout
     {
 
         static List<Conta>  contas = new List<Conta>();
         static double saldo = 0;
         static string opcao;
+        static string senha;
+        static string cpf;
+
+
+
+
+
         public static void TelaPrincipal()
         {
             Console.Clear();
@@ -20,9 +28,15 @@ namespace BancoDigital.Classes
             Console.Clear();
             opcao = "";
 
+            if(!contas.Any())
+            {
+                Conta ContaAdmin = new Conta("admin", "00000000000", "admin123", 0);
+                contas.Add(ContaAdmin);
+            }
+
             
 
-
+            
 
             Utilidades.EscreverCentralizado("Escolha uma das opções abaixo:");
             Utilidades.EscreverCentralizado("<><><><><><><><><><><><><><><><><><><><><><><><><>");
@@ -66,8 +80,8 @@ namespace BancoDigital.Classes
         {
             Console.Clear();
 
-            string cpf;
-            string senha;
+            //string cpf;
+            //string senha;
 
             do
             {
@@ -84,7 +98,7 @@ namespace BancoDigital.Classes
                 }
                 
                 
-            }while(!Utilidades.ValidarCpfLogin(cpf, contas));
+            }while(!Utilidades.ValidarCpfLogin(cpf,contas));
 
 
             Utilidades.EscreverCentralizadoEmVerde("CPF Válido");
@@ -110,7 +124,7 @@ namespace BancoDigital.Classes
             }while(!Utilidades.ValidarSenhaLogin(senha, contas));
 
 
-            Conta ContaAtual = contas[0];
+            Conta ContaAtual = contas[SelecionaContaAtual(cpf, senha)];
             Console.Clear();
             Console.WriteLine();
             Console.WriteLine();
@@ -132,8 +146,8 @@ namespace BancoDigital.Classes
         public static void TelaCriaConta()
         {
             string nome;
-            string cpf;
-            string senha;
+            //string cpf;
+            //string senha;
             
             Console.Clear();
             Utilidades.SettaCores();
@@ -226,7 +240,7 @@ namespace BancoDigital.Classes
         public static void TelaConta()
         {
 
-            Conta primeiraConta = contas[0];
+            Conta ContaAtual = contas[SelecionaContaAtual(cpf, senha)];
 
 
             
@@ -236,7 +250,7 @@ namespace BancoDigital.Classes
             Utilidades.SettaCores();
             Console.Clear();
 
-            Utilidades.EscreverCentralizado($"Bem Vindo, {primeiraConta.Nome} | Banco: 000 | Agencia: 00000 | Conta: {Conta.QtdConta} ");
+            Utilidades.EscreverCentralizado($"Bem Vindo, {ContaAtual.Nome} | Banco: 000 | Agencia: 00000 | Conta: {Conta.QtdConta} ");
             Console.WriteLine();
             Utilidades.EscreverCentralizado("Escolha uma das opções abaixo:");
             Utilidades.EscreverCentralizado("<><><><><><><><><><><><><><><><><><><><><><><><><>");
@@ -303,8 +317,8 @@ namespace BancoDigital.Classes
         {
             Console.Clear();
 
-            Conta primeiraConta = contas[0];
-            Utilidades.EscreverCentralizado($"Bem Vindo, {primeiraConta.Nome} | Banco: 000 | Agencia: 00000 | Conta: {Conta.QtdConta} ");
+            Conta ContaAtual = contas[SelecionaContaAtual(cpf, senha)];
+            Utilidades.EscreverCentralizado($"Bem Vindo, {ContaAtual.Nome} | Banco: 000 | Agencia: 00000 | Conta: {Conta.QtdConta} ");
             Console.WriteLine();
             Utilidades.EscreverCentralizado("Digite o valor do deposito: ");
 
@@ -329,9 +343,9 @@ namespace BancoDigital.Classes
                 return;
             }
             
-            primeiraConta.RealizaDeposito(qtddeposito);
+            ContaAtual.RealizaDeposito(qtddeposito);
 
-            primeiraConta.ConsultaSaldo();
+            ContaAtual.ConsultaSaldo();
             Console.ReadKey();
 
             TelaConta();
@@ -345,22 +359,22 @@ namespace BancoDigital.Classes
         {
             Console.Clear();
 
-            Conta primeiraConta = contas[0];
-            Utilidades.EscreverCentralizado($"Bem Vindo, {primeiraConta.Nome} | Banco: 000 | Agencia: 00000 | Conta: {Conta.QtdConta} ");
+            Conta ContaAtual = contas[SelecionaContaAtual(cpf, senha)];
+            Utilidades.EscreverCentralizado($"Bem Vindo, {ContaAtual.Nome} | Banco: 000 | Agencia: 00000 | Conta: {Conta.QtdConta} ");
             Console.WriteLine();
             Utilidades.EscreverCentralizado("Digite o valor do saque: ");
             double QtdSaque = double.Parse(Console.ReadLine());
 
-            if(primeiraConta.Saldo < QtdSaque)
+            if(ContaAtual.Saldo < QtdSaque)
             {
                 Utilidades.EscreverCentralizadoEmVermelho("Saldo Insuficiente!!!");
                 Console.ReadKey();
                 TelaContaSaque();
             }
 
-            primeiraConta.RealizaSaque(QtdSaque);
+            ContaAtual.RealizaSaque(QtdSaque);
 
-            primeiraConta.ConsultaSaldo();
+            ContaAtual.ConsultaSaldo();
             Console.ReadKey();
 
             TelaConta();
@@ -371,8 +385,8 @@ namespace BancoDigital.Classes
         {
             Console.Clear();
 
-            Conta primeiraConta = contas[0];
-            Utilidades.EscreverCentralizado($"Bem Vindo, {primeiraConta.Nome} | Banco: 000 | Agencia: 00000 | Conta: {Conta.QtdConta} ");
+            Conta ContaAtual = contas[SelecionaContaAtual(cpf, senha)];
+            Utilidades.EscreverCentralizado($"Bem Vindo, {ContaAtual.Nome} | Banco: 000 | Agencia: 00000 | Conta: {Conta.QtdConta} ");
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine();
@@ -380,7 +394,7 @@ namespace BancoDigital.Classes
             Console.WriteLine();
             Utilidades.EscreverCentralizado("<><><><><><><><><><><><><><><><><><><><><><><><><>");
             Utilidades.EscreverCentralizado("<><><><><><><><><><><><><><><><><><><><><><><><><>");
-            primeiraConta.ConsultaSaldo();
+            ContaAtual.ConsultaSaldo();
             Utilidades.EscreverCentralizado("<><><><><><><><><><><><><><><><><><><><><><><><><>");
             Utilidades.EscreverCentralizado("<><><><><><><><><><><><><><><><><><><><><><><><><>");
             Console.ReadKey();
@@ -393,17 +407,17 @@ namespace BancoDigital.Classes
         {
             Console.Clear();
 
-            Conta primeiraConta = contas[0];
-            Utilidades.EscreverCentralizado($"Bem Vindo, {primeiraConta.Nome} | Banco: 000 | Agencia: 00000 | Conta: {Conta.QtdConta} ");
+            Conta ContaAtual = contas[SelecionaContaAtual(cpf, senha)];
+            Utilidades.EscreverCentralizado($"Bem Vindo, {ContaAtual.Nome} | Banco: 000 | Agencia: 00000 | Conta: {Conta.QtdConta} ");
             
             Console.WriteLine();
             Console.WriteLine();
-            primeiraConta.ConsultaExtrato();
+            ContaAtual.ConsultaExtrato();
             Console.WriteLine();
             Console.WriteLine();
 
             Utilidades.EscreverCentralizado("<><><><><><><><><><><><><><><><><><><><><><><><><>");
-            Utilidades.EscreverCentralizado("Saldo atual: " + primeiraConta.Saldo);
+            Utilidades.EscreverCentralizado("Saldo atual: " + ContaAtual.Saldo);
             Utilidades.EscreverCentralizado("<><><><><><><><><><><><><><><><><><><><><><><><><>");
             
             Console.WriteLine();
@@ -420,8 +434,8 @@ namespace BancoDigital.Classes
         {
             Console.Clear();
 
-            Conta primeiraConta = contas[0];
-            Utilidades.EscreverCentralizado($"Bem Vindo, {primeiraConta.Nome} | Banco: 000 | Agencia: 00000 | Conta: {Conta.QtdConta} ");
+            Conta ContaAtual = contas[SelecionaContaAtual(cpf, senha)];
+            Utilidades.EscreverCentralizado($"Bem Vindo, {ContaAtual.Nome} | Banco: 000 | Agencia: 00000 | Conta: {Conta.QtdConta} ");
             Console.WriteLine();
             Console.WriteLine();
 
@@ -442,6 +456,27 @@ namespace BancoDigital.Classes
             TelaPrincipal();
 
         }
+
+
+        
+        public static int SelecionaContaAtual(string cpf, string senha)
+        {
+            int indice = -1;
+            int contador = 0;
+
+            foreach (Conta conta in contas)
+            {
+                if (conta.Cpf == cpf && conta.Senha == senha)
+                {
+                    indice = contador;
+                    break;
+                }
+                contador++;
+            }
+
+            return indice;
+        }
+        
 
     }
 }

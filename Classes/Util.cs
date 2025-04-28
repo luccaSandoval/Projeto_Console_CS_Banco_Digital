@@ -5,7 +5,7 @@ namespace BancoDigital.Classes
     public class Utilidades 
     {
         
-
+       
 
         public static void EscreverCentralizado(string mensagem)
         {
@@ -101,7 +101,7 @@ namespace BancoDigital.Classes
         }
 
 
-        public static bool ValidarCpfLogin(string cpf, List<Conta> contas)
+        public static bool ValidarCpfLogin(string cpf,List<Conta> contas)
         {
             Conta primeiraConta = contas[0];
 
