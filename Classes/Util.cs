@@ -103,31 +103,38 @@ namespace BancoDigital.Classes
 
         public static bool ValidarCpfLogin(string cpf,List<Conta> contas)
         {
-            Conta primeiraConta = contas[0];
-
-            if (cpf == primeiraConta.Cpf)
+            
+            foreach (Conta conta in contas)
             {
-                return true;
-            } 
-            else
-            {
-                return false;
+                if (cpf == conta.Cpf)
+                {
+                    return true;
+                } 
+                
             }
+
+            return false;
 
         }
 
         public static bool ValidarSenhaLogin(string senha, List<Conta> contas)
         {
-            Conta primeiraConta = contas[0];
+            
 
-            if (senha == primeiraConta.Senha)
+            foreach (Conta conta in contas)
             {
-                return true;
-            } 
-            else
-            {
-                return false;
+                if (senha == conta.Senha)
+                {
+                    return true;
+                } 
+                
+                
+                
+                
             }
+
+            return false;
+            
         }
 
                 

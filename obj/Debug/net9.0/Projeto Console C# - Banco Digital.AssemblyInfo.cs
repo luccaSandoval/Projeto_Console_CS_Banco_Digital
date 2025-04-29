@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Projeto Console C# - Banco Digital")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+513056022d2ffa4dd85558025c819fe6029f48e7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+656d2225dad52f8100cbe75ae82556e3d38cf41b")]
 [assembly: System.Reflection.AssemblyProductAttribute("Projeto Console C# - Banco Digital")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Projeto Console C# - Banco Digital")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
