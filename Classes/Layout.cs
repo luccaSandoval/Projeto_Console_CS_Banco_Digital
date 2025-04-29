@@ -283,6 +283,12 @@ namespace BancoDigital.Classes
                     TelaContaDeposito();
                     break;
                 case "2":
+                    if(ContaAtual.Saldo <= 0)
+                    {
+                        Utilidades.EscreverCentralizadoEmVermelho("Saldo insuficiente para saque!!");
+                        Thread.Sleep(2000);
+                        TelaConta();
+                    }
                     TelaContaSaque();
                     break;
                 case "3":
