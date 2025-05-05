@@ -1,0 +1,14 @@
+D:\PORO\Estudos\BancoDigital\bin\Debug\net9.0\BancoDigital.exe
+D:\PORO\Estudos\BancoDigital\bin\Debug\net9.0\BancoDigital.deps.json
+D:\PORO\Estudos\BancoDigital\bin\Debug\net9.0\BancoDigital.runtimeconfig.json
+D:\PORO\Estudos\BancoDigital\bin\Debug\net9.0\BancoDigital.dll
+D:\PORO\Estudos\BancoDigital\bin\Debug\net9.0\BancoDigital.pdb
+D:\PORO\Estudos\BancoDigital\obj\Debug\net9.0\BancoDigital.GeneratedMSBuildEditorConfig.editorconfig
+D:\PORO\Estudos\BancoDigital\obj\Debug\net9.0\BancoDigital.AssemblyInfoInputs.cache
+D:\PORO\Estudos\BancoDigital\obj\Debug\net9.0\BancoDigital.AssemblyInfo.cs
+D:\PORO\Estudos\BancoDigital\obj\Debug\net9.0\BancoDigital.csproj.CoreCompileInputs.cache
+D:\PORO\Estudos\BancoDigital\obj\Debug\net9.0\BancoDigital.dll
+D:\PORO\Estudos\BancoDigital\obj\Debug\net9.0\refint\BancoDigital.dll
+D:\PORO\Estudos\BancoDigital\obj\Debug\net9.0\BancoDigital.pdb
+D:\PORO\Estudos\BancoDigital\obj\Debug\net9.0\BancoDigital.genruntimeconfig.cache
+D:\PORO\Estudos\BancoDigital\obj\Debug\net9.0\ref\BancoDigital.dll

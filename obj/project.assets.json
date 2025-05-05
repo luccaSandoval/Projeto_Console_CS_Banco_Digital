@@ -13,9 +13,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\PORO\\Estudos\\Projeto Console C# - Banco Digital\\Projeto Console C# - Banco Digital.csproj",
-      "projectName": "Projeto Console C# - Banco Digital",
-      "projectPath": "D:\\PORO\\Estudos\\Projeto Console C# - Banco Digital\\Projeto Console C# - Banco Digital.csproj",
+      "projectUniqueName": "D:\\PORO\\Estudos\\Projeto Console C# - Banco Digital\\BancoDigital.csproj",
+      "projectName": "BancoDigital",
+      "projectPath": "D:\\PORO\\Estudos\\Projeto Console C# - Banco Digital\\BancoDigital.csproj",
       "packagesPath": "C:\\Users\\lucca\\.nuget\\packages\\",
       "outputPath": "D:\\PORO\\Estudos\\Projeto Console C# - Banco Digital\\obj\\",
       "projectStyle": "PackageReference",
