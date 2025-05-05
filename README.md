@@ -49,7 +49,7 @@ dotnet run
 
 ```
 BancoDigital/
-├── Models/        # Modelos de dados (Conta, Usuario, etc.)
+├── Models/        # Modelos de dados 
 ├── Services/      # Lógica de negócios e operações
 ├── UI/            # Interface do usuário via console
 ├── Program.cs     # Ponto de entrada da aplicação
@@ -57,10 +57,3 @@ BancoDigital/
 └── ...
 ```
 
-## 🤝 Contribuição
-
-Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou enviar pull requests com melhorias, correções ou novas funcionalidades.
-
-## 📝 Licença
-
-Este projeto é open-source sob a licença MIT.
